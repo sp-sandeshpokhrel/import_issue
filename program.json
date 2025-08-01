@@ -1,1 +1,0 @@
-{"program":"import_program.aleo","version":"0.1.0","description":"","license":"MIT","dependencies":[{"name":"pondo_protocol.aleo","location":"local","path":"./imports/registry/testnet/pondo_protocol.aleo"}],"dev_dependencies":null}

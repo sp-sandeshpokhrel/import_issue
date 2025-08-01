@@ -1,0 +1,1 @@
+{"program":"import_import_program.aleo","version":"0.1.0","description":"","license":"MIT","dependencies":[{"name":"import_program.aleo","location":"network","endpoint":"http://localhost:3030","network":"testnet"}],"dev_dependencies":null}

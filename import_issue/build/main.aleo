@@ -6,7 +6,7 @@ import delegator3.aleo;
 import delegator4.aleo;
 import delegator5.aleo;
 import token_registry.aleo;
-import paleo_token.aleo;
+import pleo_token.aleo;
 import pondo_protocol_token.aleo;
 import wrapped_credits.aleo;
 import pondo_protocol.aleo;
