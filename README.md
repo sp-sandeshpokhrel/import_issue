@@ -1,6 +1,6 @@
 # Issue where either sending _version or not sending makes the transaction pass successfully
-With snarkOS v4.0.1
-With leo from PR https://github.com/ProvableHQ/leo/pull/28753 
+With snarkOS v4.0.1 installed using `cargo install --locked --path . --features test_network`
+With leo from PR https://github.com/ProvableHQ/leo/pull/28753  with `test_consensus_height` feature on for snarkvm depenedency
 
 ## Deploy new_record2 using
 ```
