@@ -40,10 +40,6 @@ mapping withdraw:
     key as address.public;
     value as address.public;
 
-mapping pool:
-    key as address.public;
-    value as u64.public;
-
 record credits:
     owner as address.private;
     microcredits as u64.private;
@@ -52,11 +48,11 @@ function bond_validator:
     input r0 as address.public;
     input r1 as u64.public;
     input r2 as u8.public;
-    assert.neq self.signer r0;
+    assert.neq self.signer r0 ;
     gte r1 1000000u64 into r3;
-    assert.eq r3 true;
+    assert.eq r3 true ;
     gt r2 100u8 into r4;
-    assert.neq r4 true;
+    assert.neq r4 true ;
     async bond_validator self.signer r0 r1 r2 into r5;
     output r5 as credits.aleo/bond_validator.future;
 
@@ -66,31 +62,31 @@ finalize bond_validator:
     input r2 as u64.public;
     input r3 as u8.public;
     get.or_use withdraw[r0] r1 into r4;
-    assert.eq r1 r4;
+    assert.eq r1 r4 ;
     cast true r3 into r5 as committee_state;
     get.or_use committee[r0] r5 into r6;
-    assert.eq r3 r6.commission;
+    assert.eq r3 r6.commission ;
     cast r0 0u64 into r7 as bond_state;
     get.or_use bonded[r0] r7 into r8;
-    assert.eq r8.validator r0;
+    assert.eq r8.validator r0 ;
     add r8.microcredits r2 into r9;
     cast r0 r9 into r10 as bond_state;
     get.or_use delegated[r0] 0u64 into r11;
     add r2 r11 into r12;
     gte r12 10000000000000u64 into r13;
-    assert.eq r13 true;
+    assert.eq r13 true ;
     get account[r0] into r14;
     sub r14 r2 into r15;
     contains committee[r0] into r16;
     branch.eq r16 true to validator_in_committee;
     set r4 into withdraw[r0];
     gte r2 100000000u64 into r17;
-    assert.eq r17 true;
+    assert.eq r17 true ;
     get.or_use metadata[aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc] 0u32 into r18;
     add r18 1u32 into r19;
     set r19 into metadata[aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc];
     contains unbonding[r0] into r20;
-    assert.eq r20 false;
+    assert.eq r20 false ;
     position validator_in_committee;
     set r6 into committee[r0];
     set r12 into delegated[r0];
@@ -102,8 +98,8 @@ function bond_public:
     input r1 as address.public;
     input r2 as u64.public;
     gte r2 1000000u64 into r3;
-    assert.eq r3 true;
-    assert.neq self.caller r0;
+    assert.eq r3 true ;
+    assert.neq self.caller r0 ;
     async bond_public self.caller r0 r1 r2 into r4;
     output r4 as credits.aleo/bond_public.future;
 
@@ -113,32 +109,32 @@ finalize bond_public:
     input r2 as address.public;
     input r3 as u64.public;
     get.or_use withdraw[r0] r2 into r4;
-    assert.eq r2 r4;
+    assert.eq r2 r4 ;
     contains bonded[r0] into r5;
     branch.eq r5 true to continue_bond_delegator;
     set r2 into withdraw[r0];
     cast true 0u8 into r6 as committee_state;
     get.or_use committee[r1] r6 into r7;
-    assert.eq r7.is_open true;
+    assert.eq r7.is_open true ;
     get.or_use metadata[aleo1qgqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqanmpl0] 0u32 into r8;
     add r8 1u32 into r9;
     lte r9 100000u32 into r10;
-    assert.eq r10 true;
+    assert.eq r10 true ;
     set r9 into metadata[aleo1qgqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqanmpl0];
     position continue_bond_delegator;
     cast r1 0u64 into r11 as bond_state;
     get.or_use bonded[r0] r11 into r12;
-    assert.eq r12.validator r1;
+    assert.eq r12.validator r1 ;
     add r12.microcredits r3 into r13;
     gte r13 10000000000u64 into r14;
-    assert.eq r14 true;
+    assert.eq r14 true ;
     cast r1 r13 into r15 as bond_state;
     get account[r0] into r16;
     sub r16 r3 into r17;
     get.or_use delegated[r1] 0u64 into r18;
     add r3 r18 into r19;
     contains unbonding[r1] into r20;
-    assert.eq r20 false;
+    assert.eq r20 false ;
     set r15 into bonded[r0];
     set r17 into account[r0];
     set r19 into delegated[r1];
@@ -163,7 +159,7 @@ finalize unbond_public:
     is.eq r0 r9 into r10;
     and r8 r10 into r11;
     or r7 r11 into r12;
-    assert.eq r12 true;
+    assert.eq r12 true ;
     is.eq r5.validator r1 into r13;
     branch.eq r13 true to unbond_validator;
     get.or_use unbonding[r1] r4 into r14;
@@ -235,7 +231,7 @@ finalize claim_unbond_public:
     input r0 as address.public;
     get unbonding[r0] into r1;
     gte block.height r1.height into r2;
-    assert.eq r2 true;
+    assert.eq r2 true ;
     get withdraw[r0] into r3;
     get.or_use account[r3] 0u64 into r4;
     add r1.microcredits r4 into r5;
@@ -356,8 +352,8 @@ function fee_private:
     input r1 as u64.public;
     input r2 as u64.public;
     input r3 as field.public;
-    assert.neq r1 0u64;
-    assert.neq r3 0field;
+    assert.neq r1 0u64 ;
+    assert.neq r3 0field ;
     add r1 r2 into r4;
     sub r0.microcredits r4 into r5;
     cast r0.owner r5 into r6 as credits.record;
@@ -367,8 +363,8 @@ function fee_public:
     input r0 as u64.public;
     input r1 as u64.public;
     input r2 as field.public;
-    assert.neq r0 0u64;
-    assert.neq r2 0field;
+    assert.neq r0 0u64 ;
+    assert.neq r2 0field ;
     add r0 r1 into r3;
     async fee_public self.signer r3 into r4;
     output r4 as credits.aleo/fee_public.future;
@@ -380,19 +376,5 @@ finalize fee_public:
     sub r2 r1 into r3;
     set r3 into account[r0];
 
-function upgrade:
-    input r0 as credits.record;
-    lte r0.microcredits 1000000000000u64 into r1;
-    assert.eq r1 true;
-    cast r0.owner r0.microcredits into r2 as credits.record;
-    async upgrade r0.microcredits into r3;
-    output r2 as credits.record;
-    output r3 as credits.aleo/upgrade.future;
-
-finalize upgrade:
-    input r0 as u64.public;
-    get.or_use pool[aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc] 0u64 into r1;
-    add r1 r0 into r2;
-    lte r2 4000000000000u64 into r3;
-    assert.eq r3 true;
-    set r2 into pool[aleo1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq3ljyzc];
+constructor:
+    assert.eq program_owner aleo1rhgdu77hgyqd3xjj8ucu3jj9r2krwz6mnzyd80gncr5fxcwlh5rsvzp9px;

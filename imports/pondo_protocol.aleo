@@ -6,7 +6,7 @@ import delegator3.aleo;
 import delegator4.aleo;
 import delegator5.aleo;
 import token_registry.aleo;
-import paleo_token.aleo;
+import pleo_token.aleo;
 import pondo_protocol_token.aleo;
 import wrapped_credits.aleo;
 program pondo_protocol.aleo;
@@ -85,7 +85,7 @@ function initialize:
     gte r0 100_000_000u64 into r1;
     assert.eq r1 true;
     call credits.aleo/transfer_public_as_signer pondo_protocol.aleo r0 into r2;
-    call paleo_token.aleo/register_token into r3;
+    call pleo_token.aleo/register_token into r3;
     cast r0 into r4 as u128;
     call token_registry.aleo/mint_public 1751493913335802797273486270793650302076377624243810059080883537084141842600field pondo_protocol.aleo r4 4294967295u32 into r5;
     call pondo_protocol_token.aleo/initialize_token into r6;
@@ -99,7 +99,7 @@ function initialize:
 
 finalize initialize:
     input r0 as credits.aleo/transfer_public_as_signer.future;
-    input r1 as paleo_token.aleo/register_token.future;
+    input r1 as pleo_token.aleo/register_token.future;
     input r2 as token_registry.aleo/mint_public.future;
     input r3 as pondo_protocol_token.aleo/initialize_token.future;
     input r4 as delegator1.aleo/initialize.future;
@@ -1137,3 +1137,6 @@ finalize set_oracle_tvl:
     lte r36 r41 into r42;
     and r39 r42 into r43;
     assert.eq r43 true;
+
+constructor:
+    assert.eq program_owner aleo1wfaqpfc57m0wxmr9l6r8a5g95c0cthe54shzmcyu6wf6tqvady9syt27xt;

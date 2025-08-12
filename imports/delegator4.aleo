@@ -217,3 +217,6 @@ finalize bond_failed:
     assert.eq r4 true;
     set 4u8 into state_mapping[0u8];
     set true into banned_validators[r0.validator];
+
+constructor:
+    assert.eq program_owner aleo1wfaqpfc57m0wxmr9l6r8a5g95c0cthe54shzmcyu6wf6tqvady9syt27xt;

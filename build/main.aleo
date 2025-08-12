@@ -6,9 +6,9 @@ import delegator3.aleo;
 import delegator4.aleo;
 import delegator5.aleo;
 import token_registry.aleo;
-import paleo_token.aleo;
-import pondo_protocol_token.aleo;
 import wrapped_credits.aleo;
+import pleo_token.aleo;
+import pondo_protocol_token.aleo;
 import pondo_protocol.aleo;
 program import_program.aleo;
 
@@ -34,3 +34,6 @@ struct TokenOwner:
 
 function main:
     output 1u32 as u32.private;
+
+constructor:
+    assert.eq program_owner aleo1wfaqpfc57m0wxmr9l6r8a5g95c0cthe54shzmcyu6wf6tqvady9syt27xt;

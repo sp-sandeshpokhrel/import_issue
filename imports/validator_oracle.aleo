@@ -1651,3 +1651,6 @@ finalize boost_validator:
     ternary r9 r10 r2 into r11;
     cast r3 r11 into r12 as validator_boost;
     set r12 into validator_boosting[r1];
+
+constructor:
+    assert.eq program_owner aleo1wfaqpfc57m0wxmr9l6r8a5g95c0cthe54shzmcyu6wf6tqvady9syt27xt;

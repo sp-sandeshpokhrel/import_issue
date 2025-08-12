@@ -95,3 +95,6 @@ function initialize_token:
 finalize initialize_token:
     input r0 as token_registry.aleo/register_token.future;
     await r0;
+
+constructor:
+    assert.eq program_owner aleo1wfaqpfc57m0wxmr9l6r8a5g95c0cthe54shzmcyu6wf6tqvady9syt27xt;

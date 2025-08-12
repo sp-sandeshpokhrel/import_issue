@@ -1,5 +1,6 @@
 import credits.aleo;
 import token_registry.aleo;
+
 program wrapped_credits.aleo;
 
 struct TokenMetadata:
